@@ -28,10 +28,9 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState, () => {
     // traigo las transacciones que hay en el localStorage, en forma de objeto
     // sino dejon el valor inicial initialState
-    return (
-      localStorage.getItem("transactions") &&
-      JSON.parse(localStorage.getItem("transactions"))
-    );
+    return localStorage.getItem("transactions")
+      ? JSON.parse(localStorage.getItem("transactions"))
+      : initialState;
   });
 
   // cada vez que el state cambia guardo los datos en el local storage en forma de json

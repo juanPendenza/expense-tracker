@@ -4,8 +4,19 @@ import Balance from "./components/Balance.jsx";
 import TransactionList from "./components/TransactionList.jsx";
 import IncomeExpenses from "./components/IncomeExpenses.jsx";
 import ExpenseChart from "./components/ExpenseChart.jsx";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [initialTransactions] = useState({
+    transactions: [],
+  });
+
+  useEffect(() => {
+    !localStorage.getItem("transactions")
+      ? localStorage.setItem("transactions", initialTransactions)
+      : false;
+  }, []);
+
   return (
     <div className="h-screen w-screen bg-[#202020] overflow-hidden p-3 pt-6">
       {/* llamo a los componentes dentro del provider */}
